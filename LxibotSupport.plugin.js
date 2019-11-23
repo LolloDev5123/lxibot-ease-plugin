@@ -33,7 +33,7 @@ var LxiBotSupport = (() => {
         "discord_id": "374859398960513025",
         "github_username": "pacucci"
       }],
-      "version": "1.3.18",
+      "version": "1.3.19",
       "description": "Adds a button which allows you to use LxiBot with ease.",
       "website": "pacucci-f.glitch.me",
       "github_raw": "https://raw.githubusercontent.com/pacucci/lxibot-ease-plugin/master/LxibotSupport.plugin.js"
@@ -399,7 +399,7 @@ var statsButton = document.createElement("img");
 			
 			
  var submitButton = document.createElement("input");
-            var fadeOutBackground = document.createElement("div");
+            var opacityBackground = document.createElement("div");
           
             var inputStyle = "width: 275px; margin: auto auto 10px auto;";
             var textInputStyle = "background-color: #fff; border: none; border-radius: 5px; height: 30px; padding-left: 10px; padding-right: 10px;";
@@ -481,14 +481,14 @@ exitButton.onclick = () => {
             // });
 
             // Add the fadeout for the background.
-            fadeOutBackground.setAttribute("id", "fadeOutBackground");
-            fadeOutBackground.setAttribute("style", "position: absolute; width: 100%; height: 100%; top: 22px; background-color: rgba(0, 0, 0, 0.8); z-index: 999999999999999999998;");
-            fadeOutBackground.onclick = () => {
+            opacityBackground.setAttribute("id", "opacityBackground");
+            opacityBackground.setAttribute("style", "position: absolute; width: 100%; height: 100%; top: 22px; background-color: rgba(0, 0, 0, 0.8); z-index: 999999999999999999998;");
+            opacityBackground.onclick = () => {
               this.closeEmbedPopup();
             };
 
 
-            document.body.appendChild(fadeOutBackground);
+            document.body.appendChild(opacityBackground);
 
             // createRecentEmbedPopup(300);
 
@@ -507,7 +507,7 @@ exitButton.onclick = () => {
             document.getElementById("recentEmbedsWrapper").remove();
           } catch (e) {}
           try {
-            document.getElementById("fadeOutBackground").remove();
+            document.getElementById("opacityBackground").remove();
           } catch (e) {}
           oldProviderName = "";
 
