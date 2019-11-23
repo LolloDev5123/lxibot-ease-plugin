@@ -28,9 +28,9 @@ var LxiBotSupport = (() => {
     "info": {
       "name": "LxiBot Support",
       "authors": [{
-        "name": "Kyza",
-        "discord_id": "220584715265114113",
-        "github_username": "KyzaGitHub"
+        "name": "Kyza & LolloG",
+        "discord_id": "374859398960513025",
+        "github_username": "pacucci"
       }],
       "version": "1.3.12",
       "description": "Adds a button which allows you to use LxiBot with ease.",
