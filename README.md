@@ -1,7 +1,7 @@
 # lxibot-ease-plugin
 A plugin made to let users use lxibot with ease
 
-#How to use it
+# How to use it
 
 After installing the plugin, click on the LxiBot icon that you will see next to to the
 "Gift Nitro" icon. It will show a menu with the command name, 2nd argument and 1st argument,
