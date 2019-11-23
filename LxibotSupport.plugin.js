@@ -23,6 +23,7 @@
 	WScript.Quit();
 
 @else@*/
+
 var LxiBotSupport = (() => {
   const config = {
     "info": {
@@ -186,7 +187,7 @@ var LxiBotSupport = (() => {
             }
           }
         }
-
+	
         addButton() {
           try {
             var channelId = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
@@ -196,7 +197,7 @@ var LxiBotSupport = (() => {
             var permissions = channel.discordObject.permissions;
 
             // Only add the button if the user has permissions to send messages and embed links.
-            if (this.isAllowed() && (this.hasPermission("textEmbedLinks") && this.hasPermission("textSendMessages"))) {
+            if (this.hasPermission("textSendMessages")) {
               if (document.getElementsByClassName("embed-button-wrapper").length == 0) {
 				  
                 var daButtons = document.getElementsByClassName("buttons-205you")[0];
@@ -231,10 +232,10 @@ var LxiBotSupport = (() => {
                   var channel = DiscordAPI.Channel.from(DiscordAPI.Channel.fromId(channelId));
 
                   // Only send the embed if the user has permissions to embed links.
-                  if (this.hasPermission("textEmbedLinks") || channel.type != "GUILD_TEXT") {
+                  if (this.hasPermission("textSendMessages") || channel.type != "GUILD_TEXT") {
                     this.openEmbedPopup();
                   } else {
-                    BdApi.alert("LxiBotSupport", `You do not have permissions to send embedded links in this channel.\n\nThis is not a problem with the plugin, it is a server setting.`);
+                    BdApi.alert("LxiBotSupport", `You do not have permissions to send messages in this channel.\n\nThis is not a problem with the plugin, it is a server setting.`);
                   }
                 };
               }
@@ -247,74 +248,6 @@ var LxiBotSupport = (() => {
 		  
         }
 
-        isAllowed() {
-          // Must be one of the following requirements.
-          // Be myself.
-          // Have any role in the BetterDiscord servers.
-
-          var guildId = window.location.toString().split("/")[window.location.toString().split("/").length - 2];
-          var betterDiscordServer1;
-          try {
-            betterDiscordServer1 = DiscordAPI.Guild.fromId("452515837593518090")
-          } catch (e) {}
-          var betterDiscordServer2;
-          try {
-            betterDiscordServer2 = DiscordAPI.Guild.fromId("480738894686453771")
-          } catch (e) {}
-
-          if (!betterDiscordServer1 || !betterDiscordServer2) {
-            return false;
-          }
-
-          var currentUser1 = betterDiscordServer1.currentUser;
-          var currentUser2 = betterDiscordServer2.currentUser;
-
-          if (['452515837593518090', '480738894686453771'].includes(guildId.toString())) {
-            if (!betterDiscordServer1) {
-              if (currentUser2.userId == "374859398960513025") {
-                // The user is Kyza, return true right away.
-                return true;
-              }
-
-              if (currentUser2.roles.length > 0) {
-                // The user is in a BetterDiscord server but has a role.
-                return true;
-              } else {
-                // The user is in a BetterDiscord server but does not have a role.
-                return false;
-              }
-            } else if (!betterDiscordServer2) {
-              if (currentUser1.userId == "374859398960513025") {
-                // The user is Kyza, return true right away.
-                return true;
-              }
-
-              if (currentUser1.roles.length > 0) {
-                // The user is in a BetterDiscord server but has a role.
-                return true;
-              } else {
-                // The user is in a BetterDiscord server but does not have a role.
-                return false;
-              }
-            } else {
-              if (currentUser1.userId == "374859398960513025") {
-                // The user is Kyza, return true right away.
-                return true;
-              }
-
-              if (currentUser1.roles.length > 0 || currentUser2.roles.length > 0) {
-                // The user is in a BetterDiscord server but has a role.
-                return true;
-              } else {
-                // The user is in a BetterDiscord server but does not have a role.
-                return false;
-              }
-            }
-          }
-
-          // The user doesn't have any of the BetterDiscord servers selected, so return true.
-          return true;
-        }
 
         removeButton() {
           if (document.getElementsByClassName("embed-button-wrapper").length > 0) {
@@ -412,30 +345,35 @@ var LxiBotSupport = (() => {
 	
 
         openEmbedPopup() {
-          if (!document.getElementById("embedPopupWrapper")) {
+          if (!document.getElementById("CommandUsageWrapper")) {
             embedOpen = true;
 
             var popupWrapper = document.createElement("div");
-            popupWrapper.setAttribute("id", "embedPopupWrapper");
+            popupWrapper.setAttribute("id", "CommandUsageWrapper");
 
             var embedButton = document.getElementsByClassName("embed-button-wrapper")[0].getBoundingClientRect();
             var positionInterval = setInterval(() => {
-              if (!document.getElementById("embedPopupWrapper")) {
+              if (!document.getElementById("CommandUsageWrapper")) {
                 window.clearInterval(positionInterval);
               }
 			  //background-color: #161E2D;
-              popupWrapper.setAttribute("style", "text-align: center; border-radius: 10px; width: " + popupWrapperWidth + "px; height: " + popupWrapperHeight + "px; position: absolute; top: " + ((window.innerHeight / 2) - (popupWrapperHeight / 2)) + "px; left: " + ((window.innerWidth / 2) - (popupWrapperWidth / 2)) + "px; background: url('https://i.redd.it/y1ostvqnr4711.jpg'); z-index: 999999999999999999999; text-rendering: optimizeLegibility;");
+
+              popupWrapper.setAttribute("style", "text-align: center; border-radius: 10px; width: " + popupWrapperWidth + "px; height: " + popupWrapperHeight + "px; position: absolute; top: " + ((window.innerHeight / 2) - (popupWrapperHeight / 2)) + "px; left: " + ((window.innerWidth / 2) - (popupWrapperWidth / 2)) +
+			  "px; background: url('https://i.redd.it/y1ostvqnr4711.jpg'); z-index: 999999999999999999999; text-rendering: optimizeLegibility;");
             }, 100);
 
             // Exit button: <svg width="18" height="18" class="button-1w5pas da-button dropdown-33sEFX da-dropdown open-1Te94t da-open"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0"></path><path stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round"></path><path stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round"></path></g></svg>
             var exitButton = document.createElement("div");
             exitButton.setAttribute("style", "position: absolute; width: 18px; height: 18px; right: 10px; top: 10px;");
-            exitButton.innerHTML = `<svg width="18" height="18" class="button-1w5pas dropdown-33sEFX open-1Te94t"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0"></path><path stroke="#161E2D" d="M4.5 4.5l9 9" stroke-linecap="round"></path><path stroke="#161E2D" d="M13.5 4.5l-9 9" stroke-linecap="round"></path></g></svg>`;
+            exitButton.innerHTML = `<svg width="18" height="18" class="button-1w5pas dropdown-33sEFX open-1Te94t"><g fill="none" fill-rule="evenodd">
+			<path d="M0 0h18v18H0"></path>
+			<path stroke="#161E2D" d="M4.5 4.5l9 9" stroke-linecap="round"></path>
+			<path stroke="#161E2D" d="M13.5 4.5l-9 9" stroke-linecap="round"></path></g></svg>`;
  
 
  var LxiBotButton = document.createElement("img");
-            LxiBotButton.setAttribute("style", "position: absolute; width: 23px; height: 23px; left: 120px; top: 17px;");
-			            LxiBotButton.setAttribute("src", "https://media-private.canva.com/MADsA1MfqBM/1/thumbnail_large.png?response-expires=Sat%2C%2023%20Nov%202019%2013%3A54%3A47%20GMT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191123T114018Z&X-Amz-SignedHeaders=host&X-Amz-Expires=8068&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20191123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c50ebff3734f257c100c9412eaf78f568c64fb78669708683aec0aa9daaf2057");
+            LxiBotButton.setAttribute("style", "position: absolute; width: 27px; height: 27px; left: 120px; top: 17px;");
+			            LxiBotButton.setAttribute("src", "https://cdn.discordapp.com/avatars/454713729649475594/aafeabfa76e9f1e532184cf5600963d0.png?size=2048");
 
 
 var musicButton = document.createElement("img");
@@ -560,7 +498,7 @@ exitButton.onclick = () => {
 
       closeEmbedPopup() {
           try {
-            document.getElementById("embedPopupWrapper").remove();
+            document.getElementById("CommandUsageWrapper").remove();
           } catch (e) {}
           try {
             document.getElementById("embedPreviewWrapper").remove();
