@@ -33,10 +33,10 @@ var LxiBotSupport = (() => {
         "discord_id": "374859398960513025",
         "github_username": "pacucci"
       }],
-      "version": "1.3.13",
+      "version": "1.3.18",
       "description": "Adds a button which allows you to use LxiBot with ease.",
       "website": "pacucci-f.glitch.me",
-      "github_raw": "https://github.com/pacucci/lxibot-ease-plugin/LxiBotSupport.plugin.js"
+      "github_raw": "https://raw.githubusercontent.com/pacucci/lxibot-ease-plugin/master/LxibotSupport.plugin.js"
     },
     "changelog": [
        {
@@ -82,7 +82,7 @@ var LxiBotSupport = (() => {
       return config.info.version;
     }
     load() {
-    PluginUpdater.checkForUpdate("LxiBotSupport", this.getVersion(), "https://raw.githubusercontent.com/KyzaGitHub/Khub/master/Plugins/LxiBotSupport/LxiBotSupport.plugin.js");
+    PluginUpdater.checkForUpdate("LxiBotSupport", this.getVersion(), this.config.github_raw);
 
     let libraryScript = document.getElementById("ZLibraryScript");
       if (!libraryScript || !window.ZLibrary) {
