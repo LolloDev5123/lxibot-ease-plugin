@@ -38,28 +38,28 @@ var LxiBotSupport = (() => {
       "github_raw": "https://github.com/pacucci/lxibot-ease-plugin/LxiBotSupport.plugin.js"
     },
     "changelog": [
-      // {
-      // 	"title": "Welcome!",
-      // 	"items": ["Now you will truly use LxiBot.", "Added this changelog."]
-      // }
-      // ,
-      // {
-      //   "title": "Bugs Squashed",
-      //   "type": "fixed",
-      //   "items": ["The button now shows up when switching channels."]
-      // }
-      // ,
+       {
+       	"title": "Welcome!",
+       	"items": ["Now you will truly use LxiBot.", "Added this changelog."]
+       }
+       ,
+       {
+        "title": "Bugs Squashed",
+         "type": "fixed",
+         "items": ["The button now shows up when switching channels."]
+       }
+       ,
       {
       	"title": "Announcement",
       	"type": "improved",
       	"items": ["Hey everyone! I'd just like to ask you to visit a website called teamtrees.org if you haven't already, that's all. Don't bug support about this, it's just an announcement."]
       }
-      // ,
-      // {
-      // 	"title": "In Progress",
-      // 	"type": "progress",
-      // 	"items": ["Adding more commands to be argument-supported, now just add a space in the CommandName part if a command still isn't supported."]
-      // }
+       ,
+       {
+       	"title": "In Progress",
+       	"type": "progress",
+       	"items": ["Adding more commands to be argument-supported, now just add a space in the CommandName part if a command still isn't supported."]
+       }
     ],
     "main": "index.js"
   };
@@ -196,8 +196,9 @@ var LxiBotSupport = (() => {
             var permissions = channel.discordObject.permissions;
 
             // Only add the button if the user has permissions to send messages and embed links.
-            if (this.isAllowed() && (this.hasPermission("textEmbedLinks") && this.hasPermission("textSendMessages")) || channel.type != "GUILD_TEXT") {
+            if (this.isAllowed() && (this.hasPermission("textEmbedLinks") && this.hasPermission("textSendMessages"))) {
               if (document.getElementsByClassName("embed-button-wrapper").length == 0) {
+				  
                 var daButtons = document.getElementsByClassName("buttons-205you")[0];
                 var embedButton = document.createElement("button");
                 embedButton.setAttribute("type", "button");
@@ -243,6 +244,7 @@ var LxiBotSupport = (() => {
           } catch (e) {
             console.log(e);
           }
+		  
         }
 
         isAllowed() {
