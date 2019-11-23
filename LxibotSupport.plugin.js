@@ -33,7 +33,7 @@ var LxiBotSupport = (() => {
         "discord_id": "374859398960513025",
         "github_username": "pacucci"
       }],
-      "version": "1.3.12",
+      "version": "1.3.13",
       "description": "Adds a button which allows you to use LxiBot with ease.",
       "website": "pacucci-f.glitch.me",
       "github_raw": "https://github.com/pacucci/lxibot-ease-plugin/LxiBotSupport.plugin.js"
