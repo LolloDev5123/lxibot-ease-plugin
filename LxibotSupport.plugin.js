@@ -33,7 +33,7 @@ var LxiBotSupport = (() => {
         "discord_id": "374859398960513025",
         "github_username": "pacucci"
       }],
-      "version": "1.3.19",
+      "version": "1.3.20",
       "description": "Adds a button which allows you to use LxiBot with ease.",
       "website": "pacucci-f.glitch.me",
       "github_raw": "https://raw.githubusercontent.com/pacucci/lxibot-ease-plugin/master/LxibotSupport.plugin.js"
@@ -380,8 +380,8 @@ var musicButton = document.createElement("img");
             musicButton.setAttribute("style", "position: absolute; width: 23px; height: 23px; left: 175px; top: 17px;");
 			           musicButton.setAttribute("src", "https://image.flaticon.com/icons/png/512/122/122320.png");
 var statsButton = document.createElement("img");
-            statsButton.setAttribute("style", "position: absolute; width: 23px; height: 23px; left: 205px; top: 17px;");
-			           statsButton.setAttribute("src", "https://image.flaticon.com/icons/png/512/126/126425.png");
+            statsButton.setAttribute("style", "position: absolute; width: 23px; height: 23px; left: 275px; top: 17px;");
+			           statsButton.setAttribute("src", "https://img.icons8.com/material/24/000000/future.png");
 
 //https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/music-icon-18-256.png
             var commandName = document.createElement("input");
@@ -428,11 +428,38 @@ var statsButton = document.createElement("img");
 
             exitButton.setAttribute("type", "button");
 			            exitButton.setAttribute("style", "margin-top: 20px;" );
+	statsButton.onclick = () => {
+					//BdApi.alert("LxiBotSupport Beta-Feature","This feature is currently in development,\n please ignore it.")
+					//BdApi.showToast("Showing changelog:")
+			/*		  const title = "LxiBotSupport Beta-Feature";
+            const ModalStack = BdApi.findModuleByProps("push", "update", "pop", "popWithKey");
+            const TextElement = BdApi.findModuleByProps("Sizes", "Weights");
+            const ConfirmationModal = BdApi.findModule(m => m.defaultProps && m.key && m.key() == "confirm-modal");
+            ModalStack.push(function(props) {
+                return BdApi.React.createElement(ConfirmationModal, Object.assign({
+                    header: title,
+                    children: [TextElement({color: TextElement.Colors.PRIMARY, children: [`This feature is currently in developmentand could have some bugs,\n please ignore it.`]})],
+                    red: false,
+                    confirmText: "Really really really use it",
+                    cancelText: "Cancel",
+                    onConfirm: () => {
 
+                    }
+                }, props));
+            });*/
+
+
+												this.showChangelog()
+
+                  this.closeEmbedPopup();
+                }
+              
 exitButton.onclick = () => {
            
                   this.closeEmbedPopup();
                 }
+				
+				
 				LxiBotButton.onclick = () => {
               var channelId = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
 				  			 DiscordAPI.Channel.fromId(channelId).sendMessage(`l+`+"help");
@@ -456,17 +483,12 @@ exitButton.onclick = () => {
                   this.closeEmbedPopup();
                 }
 				
-				statsButton.onclick = () => {
-           
-                  this.window.href = "https://analyticexpressjs.glitch.me"
-                  this.closeEmbedPopup();
-                }
-              
-            
+			
 
             popupWrapper.appendChild(commandName);
             popupWrapper.appendChild(commandArgs1);
             popupWrapper.appendChild(commandArgs2);
+            popupWrapper.appendChild(statsButton);
 
             popupWrapper.appendChild(submitButton);
                     popupWrapper.appendChild(LxiBotButton);
@@ -495,7 +517,11 @@ exitButton.onclick = () => {
             document.body.appendChild(popupWrapper);
           }
         }
+		 
 
+   getSettingsPanel() {
+         BdApi.alert("BetaFeature","just wait...")
+        }
       closeEmbedPopup() {
           try {
             document.getElementById("CommandUsageWrapper").remove();
