@@ -33,7 +33,7 @@ var LxiBotSupport = (() => {
         "discord_id": "374859398960513025",
         "github_username": "pacucci"
       }],
-      "version": "1.3.20",
+      "version": "1.3.21",
       "description": "Adds a button which allows you to use LxiBot with ease.",
       "website": "pacucci-f.glitch.me",
       "github_raw": "https://raw.githubusercontent.com/pacucci/lxibot-ease-plugin/master/LxibotSupport.plugin.js"
@@ -41,7 +41,7 @@ var LxiBotSupport = (() => {
     "changelog": [
        {
        	"title": "Welcome!",
-       	"items": ["Now you will truly use LxiBot.", "Added this changelog."]
+       	"items": ["Now the LxiBot Button will change image depending on the theme.", "Added this changelog."]
        }
        ,
        {
@@ -198,6 +198,8 @@ var LxiBotSupport = (() => {
 
             // Only add the button if the user has permissions to send messages and embed links.
             if (this.hasPermission("textSendMessages")) {
+							if (ZLibrary.DiscordModules.UserSettingsStore.theme == "dark"){
+
               if (document.getElementsByClassName("embed-button-wrapper").length == 0) {
 				  
                 var daButtons = document.getElementsByClassName("buttons-205you")[0];
@@ -239,7 +241,56 @@ var LxiBotSupport = (() => {
                   }
                 };
               }
-            } else {
+          }else{
+			  
+			 
+              if (document.getElementsByClassName("embed-button-wrapper").length == 0) {
+				  
+                var daButtons = document.getElementsByClassName("buttons-205you")[0];
+                var embedButton = document.createElement("button");
+                embedButton.setAttribute("type", "button");
+                embedButton.setAttribute("class", "buttonWrapper-1ZmCpA da-buttonWrapper button-38aScr da-button lookBlank-3eh9lL da-lookBlank colorBrand-3pXr91 da-colorBrand grow-q77ONN da-grow normal embed-button-wrapper");
+
+                var embedButtonInner = document.createElement("div");
+                embedButtonInner.setAttribute("class", "contents-18-Yxp da-contents button-3AYNKb da-button button-2vd_v_ da-button embed-button-inner");
+
+                var embedButtonIcon = document.createElement("img");
+                //version="1.1" xmlns="http://www.w3.org/2000/svg" class="icon-3D60ES da-icon" viewBox="0 0 22 22" fill="currentColor"
+                embedButtonIcon.setAttribute("src", "https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/spaces%2F-LKgTkX3Q3L2Bkm8JPAe%2Favatar.png?generation=1535123715163241&alt=media");
+                embedButtonIcon.setAttribute("class", "icon-3D60ES da-icon");
+                embedButtonIcon.setAttribute("width", "22");
+                embedButtonIcon.setAttribute("height", "22");
+
+                embedButtonIcon.onmouseover = () => {
+                  embedButtonIcon.setAttribute("style", "filter: opacity(100%) !important;");
+                };
+                embedButtonIcon.onmouseout = () => {
+                  embedButtonIcon.setAttribute("style", "filter: opacity(70%) !important;");
+                };
+
+                embedButtonInner.appendChild(embedButtonIcon);
+                embedButton.appendChild(embedButtonInner);
+                daButtons.insertBefore(embedButton, daButtons.firstChild);
+
+                embedButton.onclick = () => {
+                  var channelId = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
+                  var channel = DiscordAPI.Channel.from(DiscordAPI.Channel.fromId(channelId));
+
+                  // Only send the embed if the user has permissions to embed links.
+                  if (this.hasPermission("textSendMessages") || channel.type != "GUILD_TEXT") {
+                    this.openEmbedPopup();
+                  } else {
+                    BdApi.alert("LxiBotSupport", `You do not have permissions to send messages in this channel.\n\nThis is not a problem with the plugin, it is a server setting.`);
+                  }
+                };
+              } 
+			  
+		  }  
+		  
+		  
+		  
+		  
+		  } else {
               this.removeButton();
             }
           } catch (e) {
