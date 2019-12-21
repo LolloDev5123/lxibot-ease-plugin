@@ -47,7 +47,7 @@ var LxiBotSupport = (() => {
        {
         "title": "Bugs Squashed",
          "type": "fixed",
-         "items": ["The button now shows up when switching channels.","The button will not display properly","The blurred background will no longer disappear when used with other plugins."]
+         "items": ["The button now shows up when switching channels.","The button will now display properly","The blurred background will no longer disappear when used with other plugins."]
        }
        ,
       {
