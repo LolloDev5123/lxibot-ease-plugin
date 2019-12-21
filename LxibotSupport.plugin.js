@@ -33,7 +33,7 @@ var LxiBotSupport = (() => {
         "discord_id": "374859398960513025",
         "github_username": "pacucci"
       }],
-      "version": "1.3.21",
+      "version": "1.3.22",
       "description": "Adds a button which allows you to use LxiBot with ease.",
       "website": "pacucci-f.glitch.me",
       "github_raw": "https://raw.githubusercontent.com/pacucci/lxibot-ease-plugin/master/LxibotSupport.plugin.js"
@@ -47,7 +47,7 @@ var LxiBotSupport = (() => {
        {
         "title": "Bugs Squashed",
          "type": "fixed",
-         "items": ["The button now shows up when switching channels.","The blurred background will no longer disappear when used with other plugins."]
+         "items": ["The button now shows up when switching channels.","The button will not display properly","The blurred background will no longer disappear when used with other plugins."]
        }
        ,
       {
@@ -195,14 +195,14 @@ var LxiBotSupport = (() => {
             if (!channelObject) return;
             var channel = DiscordAPI.Channel.from(channelObject);
             var permissions = channel.discordObject.permissions;
-
+console.log(ZLibrary.DiscordModules.UserSettingsStore.theme)
             // Only add the button if the user has permissions to send messages and embed links.
             if (this.hasPermission("textSendMessages")) {
 							if (ZLibrary.DiscordModules.UserSettingsStore.theme == "dark"){
 
               if (document.getElementsByClassName("embed-button-wrapper").length == 0) {
 				  
-                var daButtons = document.getElementsByClassName("buttons-205you")[0];
+                var daButtons = document.getElementsByClassName("buttons-3JBrkn da-buttons")[0];
                 var embedButton = document.createElement("button");
                 embedButton.setAttribute("type", "button");
                 embedButton.setAttribute("class", "buttonWrapper-1ZmCpA da-buttonWrapper button-38aScr da-button lookBlank-3eh9lL da-lookBlank colorBrand-3pXr91 da-colorBrand grow-q77ONN da-grow normal embed-button-wrapper");
