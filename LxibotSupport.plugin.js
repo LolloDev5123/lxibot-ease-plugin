@@ -423,12 +423,12 @@ console.log(ZLibrary.DiscordModules.UserSettingsStore.theme)
  
 
  var LxiBotButton = document.createElement("img");
-            LxiBotButton.setAttribute("style", "position: absolute; width: 27px; height: 27px; left: 120px; top: 17px;");
+            LxiBotButton.setAttribute("style", "position: absolute; width: 27px; height: 27px; left: 20px; top: 17px;");
 			            LxiBotButton.setAttribute("src", "https://cdn.discordapp.com/avatars/454713729649475594/aafeabfa76e9f1e532184cf5600963d0.png?size=2048");
 
 
 var musicButton = document.createElement("img");
-            musicButton.setAttribute("style", "position: absolute; width: 23px; height: 23px; left: 175px; top: 17px;");
+            musicButton.setAttribute("style", "position: absolute; width: 23px; height: 23px; left: 55px; top: 17px;");
 			           musicButton.setAttribute("src", "https://image.flaticon.com/icons/png/512/122/122320.png");
 var statsButton = document.createElement("img");
             statsButton.setAttribute("style", "position: absolute; width: 23px; height: 23px; left: 275px; top: 17px;");
